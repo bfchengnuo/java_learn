@@ -1,0 +1,47 @@
+
+**选择排序
+for(int x = 0;x < a.length - 1;x++)
+	for(int y = x+1,t;y < a.length;y++)
+	{
+		if(a[x] > a[y])		//从小到大排序
+		{
+			t = a[x];
+			a[x] = a[y];
+			a[y] = t;
+		}
+	}
+***选择排序的优化,减少交换次数
+for(int x = 0;x < a.length - 1;x++)
+{
+	int num = a[x];
+	int index = x;
+	for(int y = x+1;y < a.length;y++)
+		if(num > a[y])
+		{
+			num = a[y];
+			index = y;
+		}
+	if(index != x)
+		swap(a,x,index);
+}
+
+**冒泡排序
+for(int x = 0;x < a.length - 1;x++)
+	for(int y = 0,t;y < a.length - 1 - x;y++)
+		if(a[y] > a[y+1])
+		{
+			t = a[y];
+			a[y] = a[y+1];
+			a[y+1] = t;
+		}
+***冒泡的第二种形式
+for(int x = a.length - 1;x > 0;x--)
+	for(int y = 0;y < x;y++)
+	{
+		if(a[x] > a[y])		//从小到大排序
+		{
+			t = a[x];
+			a[x] = a[y];
+			a[y] = t;
+		}
+	}
