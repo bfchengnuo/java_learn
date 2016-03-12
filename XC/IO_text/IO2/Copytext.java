@@ -21,6 +21,11 @@ public class Copytext {
 			// 用来记录读取字符的个数
 			int len;
 			while ((len = fr.read(ch)) != -1) {
+				/*
+				write(char[] cbuf, int off, int len) 
+				写入字符数组的某一部分。
+				所以是不会覆盖原来写的内容的
+				*/
 				fw.write(ch, 0, len);
 			}
 		} catch (Exception e) {
