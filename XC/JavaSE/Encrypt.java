@@ -19,30 +19,30 @@ public class Encrypt {
 	}
 	
 	/**
-	 * Êı¾İ¼ÓÃÜ
-	 * @param data ¼ÓÃÜµÄÊı¾İ
-	 * @param mode ¼ÓÃÜÄ£Ê½
-	 * @return ¼ÓÃÜºóµÄ×Ö´®
+	 * æ•°æ®åŠ å¯†
+	 * @param data åŠ å¯†çš„æ•°æ®
+	 * @param mode åŠ å¯†æ¨¡å¼
+	 * @return åŠ å¯†åçš„å­—ä¸²
 	 * @throws Exception
 	 *
-	 * ¿ÆÆÕ MD5
-	 * md5µÄ³¤¶È£¬Ä¬ÈÏÎª128bit£¬Ò²¾ÍÊÇ128¸ö0ºÍ1µÄ¶ş½øÖÆ´®¡£
-	 * ÕâÑùµÄ±í´ï²»ÊÇºÜÓÑºÃ
-	 * ËùÒÔ½«¶ş½øÖÆ×ª³ÉÁË16½øÖÆ£¬Ã¿4¸öbit±íÊ¾Ò»¸ö16½øÖÆ£¬
-	 * ËùÒÔ128/4 = 32 »»³É16½øÖÆ±íÊ¾ºó£¬Îª32Î»ÁË¡£
+	 * ç§‘æ™® MD5
+	 * md5çš„é•¿åº¦ï¼Œé»˜è®¤ä¸º128bitï¼Œä¹Ÿå°±æ˜¯128ä¸ª0å’Œ1çš„äºŒè¿›åˆ¶ä¸²ã€‚
+	 * è¿™æ ·çš„è¡¨è¾¾ä¸æ˜¯å¾ˆå‹å¥½
+	 * æ‰€ä»¥å°†äºŒè¿›åˆ¶è½¬æˆäº†16è¿›åˆ¶ï¼Œæ¯4ä¸ªbitè¡¨ç¤ºä¸€ä¸ª16è¿›åˆ¶ï¼Œ
+	 * æ‰€ä»¥128/4 = 32 æ¢æˆ16è¿›åˆ¶è¡¨ç¤ºåï¼Œä¸º32ä½äº†ã€‚
 	 */
 	public static String getEncrypt(byte[] data,String mode)throws Exception{
-		//ÊµÀı»¯-³õÊ¼»¯
+		//å®ä¾‹åŒ–-åˆå§‹åŒ–
 		MessageDigest md = MessageDigest.getInstance(mode);
-		//´¦ÀíÊı¾İ
+		//å¤„ç†æ•°æ®
 		md.update(data);
-		//Íê³É¹şÏ£¼ÆËã£¬·µ»Ø¼ÆËã½á¹û£¬MessageDigest¶ÔÏó±»ÖØÖÃÎª³õÊ¼×´Ì¬
+		//å®Œæˆå“ˆå¸Œè®¡ç®—ï¼Œè¿”å›è®¡ç®—ç»“æœï¼ŒMessageDigestå¯¹è±¡è¢«é‡ç½®ä¸ºåˆå§‹çŠ¶æ€
 		byte[] digest = md.digest();
-		//¶ş½øÖÆ×ªÊ®Áù½øÖÆ
+		//äºŒè¿›åˆ¶è½¬åå…­è¿›åˆ¶
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < digest.length; i++) {
-			// Ê×ÏÈ×ª³É4Î»µÄ int Öµ£¬È»ºó°´Î»ÓëÔËËã
-			// Ò»¸ö×Ö½ÚÊÇ°ËÎ»£¬ËùÒÔÈç¹û²»¹»16Òª²¹0£¬´ÕÆë2¸ö
+			// é¦–å…ˆè½¬æˆ4ä½çš„ int å€¼ï¼Œç„¶åæŒ‰ä½ä¸è¿ç®—
+			// ä¸€ä¸ªå­—èŠ‚æ˜¯å…«ä½ï¼Œæ‰€ä»¥å¦‚æœä¸å¤Ÿ16è¦è¡¥0ï¼Œå‡‘é½2ä¸ª
 			int temp = (int)digest[i] & 0xff;
 			if (temp < 16) {
 				sb.append("0");
@@ -54,27 +54,27 @@ public class Encrypt {
 	}
 	
 	/**
-	 * AES¼ÓÃÜ
+	 * AESåŠ å¯†
 	 * @param data
 	 * @param key
 	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] aesEncrypt2bytes(String data,String key) throws Exception{
-		//´´½¨AESµÄÉú²úÕß
+		//åˆ›å»ºAESçš„ç”Ÿäº§è€…
 		KeyGenerator Kgen =KeyGenerator.getInstance("AES");
-		//ÀûÓÃÖ¸¶¨µÄÃÜÔ¿Éú²ú³ö128Î»µÄkeyÉú²úÕß
+		//åˆ©ç”¨æŒ‡å®šçš„å¯†é’¥ç”Ÿäº§å‡º128ä½çš„keyç”Ÿäº§è€…
 		Kgen.init(128,new SecureRandom(key.getBytes()));
-		//´´½¨ÃÜÂëÆ÷
+		//åˆ›å»ºå¯†ç å™¨
 		Cipher cipher = Cipher.getInstance("AES");
-		//³õÊ¼»¯Îª¼ÓÃÜÄ£Ê½µÄÃÜÂëÆ÷
+		//åˆå§‹åŒ–ä¸ºåŠ å¯†æ¨¡å¼çš„å¯†ç å™¨
 		cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(Kgen.generateKey().getEncoded(), "AES"));
-		//½øĞĞÊı¾İµÄ¼ÓÃÜ²¢·µ»Ø
+		//è¿›è¡Œæ•°æ®çš„åŠ å¯†å¹¶è¿”å›
 		return cipher.doFinal(data.getBytes("UTF-8"));
 	}
 	
 	/**
-	 * AES½âÃÜ
+	 * AESè§£å¯†
 	 * @param data
 	 * @param key
 	 * @return
@@ -83,8 +83,23 @@ public class Encrypt {
 		KeyGenerator Kgen = KeyGenerator.getInstance("AES");
 		Kgen.init(128,new SecureRandom(key.getBytes()));
 		Cipher cipher=Cipher.getInstance("AES");
-		//ÉèÖÃÎª½âÃÜÄ£Ê½
+		//è®¾ç½®ä¸ºè§£å¯†æ¨¡å¼
 		cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Kgen.generateKey().getEncoded(), "AES"));
 		return new String(cipher.doFinal(),"UTF-8");
+	}
+
+
+	// ä½¿ç”¨ base64 è¿›è¡Œç¼–ç 
+	public static String getEncrypt(byte[] data,String mode)throws Exception{
+		MessageDigest md = MessageDigest.getInstance(mode);
+		//å¤„ç†æ•°æ®
+		md.update(data);
+		//å®Œæˆå“ˆå¸Œè®¡ç®—ï¼Œè¿”å›è®¡ç®—ç»“æœï¼ŒMessageDigestå¯¹è±¡è¢«é‡ç½®ä¸ºåˆå§‹çŠ¶æ€
+		byte[] digest = md.digest();
+		// byte[] digest = md.digest(data);
+		
+		// è¿›è¡Œ base64 ç¼–ç 
+		BASE64Encoder encoder = new BASE64Encoder();
+		return encoder.encode(digest);
 	}
 }
