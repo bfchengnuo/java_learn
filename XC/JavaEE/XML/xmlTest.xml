@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<note>
+    <to>George</to>
+    <from>John</from>
+    <heading>Reminder</heading>
+
+    <body>Don't forget the meeting!</body>
+</note>
+
+<!-- XML约束技术：1.XML DTD (.dtd结尾) 2.XML Schema -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 内部定义 -->
+<!DOCTYPE note [
+  <!ELEMENT note (to,from,heading,body)>
+  <!ELEMENT to      (#PCDATA)>
+  <!ELEMENT from    (#PCDATA)>
+  <!ELEMENT heading (#PCDATA)>
+  <!ELEMENT body    (#PCDATA)>
+]>
+<!-- 外部引用  SYSTEM内部引用，还有一种外部引用PUBLIC -->
+<!DOCTYPE 书架 SYSTEM "book.dtd">
+
+<书架>
+	<书></书>
+</书架>
+
+
+
+<!-- 
+  DOM解析：占用内存大，解析速度慢，可以CRUD操作
+    每一个组成部分都是一个对象
+    JAXP：官方标准，效率比较低  标签对象：Element
+    DOM4J：效率比较好
+  SAX解析：占用内存小，解析速度快，只适合读取
+ -->
