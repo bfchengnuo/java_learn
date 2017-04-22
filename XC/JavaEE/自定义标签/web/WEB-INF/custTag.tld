@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <taglib xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -16,5 +16,25 @@
         <tag-class>web.tag.ViewIPTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
+
+    <tag>
+        <name>custAttributes</name>
+        <tag-class>web.tag.SimpleAttributes</tag-class>
+        <body-content>scriptless</body-content>
+
+        <attribute>
+            <name>cont</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <!--<type></type>-->
+        </attribute>
+    </tag>
+
+    <!-- EL 表达式执行函数 -->
+    <function>
+        <name>test</name>
+        <function-class>utils.WebUtils</function-class>
+        <function-signature>java.lang.String test(java.lang.String)</function-signature>
+    </function>
 
 </taglib>
