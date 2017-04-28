@@ -34,13 +34,26 @@ public class Demo2 {
 		df = DateFormat.getInstance();
 		System.out.println(df.format(date));
 		
+		// -------------------------------------------------------------
 		
+
 		// 使用dateformat反向把一个字符串格式化成一个日期对象
 		String str = "2011年3月25日 星期五 上午11:44";
 		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT, Locale.CHINA);
 		Date date = df.parse(str);
 		System.out.println(date);
 		
+		// 按格式转换
+		String str = "2017-04-23";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+			System.out.println(df.parse(str));
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
+
+		// ----------------------------其他转换----------------------------
+
 		// 转数字
 		int price = 18;   //$18  
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.JAPAN);
