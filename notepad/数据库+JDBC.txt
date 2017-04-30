@@ -1,0 +1,116 @@
+++ 数据库
+
+\s 查看系统状态
+
+查看数据库的创建细节
+show create database name;
+
+drop database name
+
+修改
+alter database name character set xxx
+
+备份数据库：
+win: mysqldump -uname -p databaseName > file.sql
+恢复数据库(恢复库中的数据，不能恢复库，要先创建)：
+sql:
+	use name;
+	Source file.sql;
+win:
+	mysql -uroot -p databaseName < file.sql
+
+show tables;
+// 查看表结构
+desc name;
+// 增加一列
+alter table tabName add newName char;
+// 修改表, 列类型
+alter table tabName modify Name varchar(20);
+// 删除列
+alter table tabName drop sex;
+// 改表名
+alter table tabName to newName;
+// 修改列名
+alter table tabName change colum newName;
+
+// 查看变量
+show variables like 'chara%';
+set xxx=xxx
+
+// 删除表中的所有数据
+truncate table tabName;
+
+// 过滤重复数据
+select distinct cloName from tabName;
+
+// 排序
+order by name asc/desc
+
+// 约束
+primary key
+	primary key(name1,name2)  /联合主键
+auto_increment /自动增长
+unique /唯一
+not null
+constraint waiName_id_FK foreign key(那一列加约束) references tabName(col); /外键约束
+
+建库常用语句：
+create database test character set utf8 collate utf8_general_ci;
+可以在 mysql 的文档中找到
+
+mysql 中 text 类型是大文本类型
+
+
+- 表设计
+一个对象就是一个表，一般
+
+00：一对多/多对一
+	1.先不要管映射关系，先设计出基本的属性
+	2.在多的一方加外键 描述
+
+00：多对多
+	1.先不要管映射关系，先设计出基本的属性
+	2.设计一个中间表，一般两列；命名为两个表名中间用 _ 连接
+	3.中间表要加约束，对应各自的 id ,可以使用联合主键保证不重复
+
+00：一对一（主从关系）
+	1.先不要管映射关系，先设计出基本的属性
+	2.从表加外键约束、非空、不能重复、来自主表
+		某些情况可以把主键设置外键
+
+00：自连接
+	1.先设计基本属性
+	2.设计一列，增加外键约束，约束来自本表，不要加非空
+		parent_id
+
+	用来，无限分级（分类表）
+
+00：
+	查询性能要求高的可能会把全部的信息写在一张表里，但是会造成冗余数据
+
+++ JDBC
+
+	java.sql
+	javax.sql
+
+	1.加载驱动
+	2.获取链接
+	3.获取向数据库发sql语句的 statament 对象
+	4.发送 sql 命令，获取返回的结果集
+	5.从结果集获取数据
+	6.关闭链接，释放资源
+
+	url 建议属性：?useUnicode=true&characterEncoding=UTF-8
+
+statement 和 preparedStatement 的区别：
+1.preparedStatement 是 statement 的孩子
+2.preparedStatement 可以防止 SQL 注入问题，会被转义
+3.preparedStatement 可以对 sql 语句进行预编译，提高效率
+
+插入的参数是大文本使用
+	setCharacterStream()
+	读取也是返回流
+	getCharacterStream()
+相应的存储二进制数据的话
+	setBinaryStream()
+	不建议使用，太大连接会很长，占用资源
