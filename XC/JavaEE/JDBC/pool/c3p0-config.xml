@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<c3p0-config>
+    <default-config>
+        <property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/test</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="user">Loli</property>
+        <property name="password">123456</property>
+　　     <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement">3</property>
+　　     <!-- 初始化数据库连接池时连接的数量 -->
+        <property name="initialPoolSize">2</property>
+        <!-- 数据库连接池中的最小的数据库连接数 -->
+        <property name="minPoolSize">1</property>
+        <!-- 数据库连接池中的最大的数据库连接数 -->
+        <property name="maxPoolSize">10</property>
+    </default-config>
+
+    <!-- This app is massive! -->
+    <named-config name="intergalactoApp">
+        <property name="acquireIncrement">50</property>
+        <property name="initialPoolSize">100</property>
+        <property name="minPoolSize">50</property>
+        <property name="maxPoolSize">1000</property>
+
+        <!-- intergalactoApp adopts a different approach to configuring statement caching -->
+        <property name="maxStatements">0</property>
+        <property name="maxStatementsPerConnection">5</property>
+
+        <!-- he's important, but there's only one of him -->
+        <user-overrides user="master-of-the-universe">
+            <property name="acquireIncrement">1</property>
+            <property name="initialPoolSize">1</property>
+            <property name="minPoolSize">1</property>
+            <property name="maxPoolSize">5</property>
+            <property name="maxStatementsPerConnection">50</property>
+        </user-overrides>
+    </named-config>
+</c3p0-config>
