@@ -8,6 +8,6 @@ package com.bfchengnuo.observer;
  */
 public interface Lolicon {
     // 更新的时候可以接受一个被观察者对象，用于获取相关信息
-    // 这里之间传 StandardLoliImpl 了
+    // 这里直接传 StandardLoliImpl 了
     void update(StandardLoliImpl loli);
 }
