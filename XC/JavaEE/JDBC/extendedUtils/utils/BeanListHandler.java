@@ -29,9 +29,9 @@ public class BeanListHandler implements ResultSetHandler {
                     String name = metaData.getColumnName(i + 1);
                     Object value = rs.getObject(name);
 
-                    // 反射，使用 Declared 说明获取的是私有变量
+                    // 反射，使用 Declared 说明获取的是已声明字段
                     Field field = bean.getClass().getDeclaredField(name);
-                    field.setAccessible(true);
+                    field.setAccessible(true); // 暴力访问
                     field.set(bean, value);
                 }
                 mList.add(bean);
