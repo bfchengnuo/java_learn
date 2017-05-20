@@ -28,6 +28,8 @@ public class Main {
 
     private static void fieldTest(Class<Student> clazz) throws NoSuchFieldException, IllegalAccessException {
         Student stu = new Student("loli");
+        // 可以获取所有的字段(成员变量)，包括私有、受保护的，但是父类的属性不会被返回
+        // 而 getField 方法可以获取到父类的公共的属性
         Field name = clazz.getDeclaredField("name");
         name.setAccessible(true);
         if (name.getType().equals(String.class)){
@@ -52,7 +54,7 @@ public class Main {
 
     private static void gzTest(Class<Student> clazz) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         //获得构造函数，用来创建对象
-        //clazz.getDeclaredConstructor();  获得私有的构造函数
+        //clazz.getDeclaredConstructor();  获得私有的构造函数，其实这个方法是获取所有的构造，包括私有和受保护的
         //constructor.setAccessible(true);   暴力反射，强制设置为可访问权限，然后就可以new对象了
 
         Constructor<Student> constructor = clazz.getConstructor();
