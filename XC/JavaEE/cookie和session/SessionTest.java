@@ -17,8 +17,17 @@ import java.util.UUID;
  */
 @WebServlet(name = "SessionTest", value = "/SessionTest")
 public class SessionTest extends HttpServlet {
+    // 设置 Session 的失效时间
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String id = session.getId();
+        // 设置 Cookie 相同的 key 进行覆盖
+        Cookie cookie = new Cookie("JSESSIONID", id);
+        cookie.setPath("/JavaWeb");  // 不要忘记
+        cookie.setMaxAge(30 * 60);
+        response.addCookie(cookie);
 
+        // request.getContextPath();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
