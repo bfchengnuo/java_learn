@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="registerForm" type="cn.itcast.web.formbean.RegisterFormBean"></form-bean>
+		
+		<form-bean name="register2Form" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="username" type="java.lang.String"></form-property>
+			<form-property name="password" type="java.lang.String"></form-property>
+			<form-property name="email" type="java.lang.String"></form-property>
+		</form-bean>
+	
+	</form-beans>
+	
+	<global-forwards>
+		<forward name="message" path="/message.jsp"></forward>
+	</global-forwards>
+
+	<action-mappings> 
+		<action path="/register" 
+				name="registerForm"
+				scope="request" 
+				input="/WEB-INF/jsp/register.jsp"
+				parameter="method"
+				type="cn.itcast.web.action.RegisterAction"
+				validate="true">
+			<forward name="message" path="/message.jsp"/>
+		</action>
+		
+		<action path="/registerUI" type="cn.itcast.web.action.RegisterUIAction">
+			<forward name="registerUI" path="/WEB-INF/jsp/register.jsp"></forward>
+		</action>
+		
+		<action path="/error" unknown="true" forward="/WEB-INF/jsp/error.jsp"></action>
+		
+		<action path="/bookAction" type="cn.itcast.web.action.BookAction" parameter="method"></action>
+		
+		<action path="/addbook" type="cn.itcast.web.action.BookAction2" parameter="add">
+		</action>
+		<action path="/updatebook" type="cn.itcast.web.action.BookAction2" parameter="update"></action>
+		<action path="/findbook" type="cn.itcast.web.action.BookAction2" parameter="find"></action>
+		<action path="/deletebook" type="cn.itcast.web.action.BookAction2" parameter="delete"></action>
+		
+		
+		<action path="/register2" 
+				name="register2Form" 
+				scope="request" 
+				input="/WEB-INF/jsp/register.jsp"
+				type="cn.itcast.web.action.RegisterAction2">
+		</action>
+		
+	</action-mappings>
+	
+	<!-- ???????,??????... -->
+	<controller processorClass="org.apache.struts.action.RequestProcessor"></controller>
+	<!-- ????????? -->
+	<message-resources parameter="MessageResource"></message-resources>
+	
+	
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" 
+                      value="/org/apache/struts/validator/validator-rules.xml,
+                             /WEB-INF/validation.xml"/>
+    </plug-in>
+	
+	
+</struts-config>
+
