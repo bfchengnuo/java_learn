@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!--可以继承，它配置了很多默认值，如 type 等-->
+    <package name="regPkg" namespace="/reg" extends="struts-default">
+        <action name="RegAction_*" class="com.bfchengnuo.web.action.RegAction" method="{1}">
+            <result name="success">/reg/success.jsp</result>
+            <result name="error">/reg/error.jsp</result>
+            <!-- 校验失败自动跳回 -->
+            <result name="input">/reg/reg.jsp</result>
+            <result name="regView">/reg/reg.jsp</result>
+
+            <!-- 去校验的第三种方式：覆盖法指定跳过的方法，这个写法在配置文件中也可以找到 -->
+            <!--<interceptor-ref name="defaultStack">-->
+                <!--<param name="validation.excludeMethods">input,back,cancel,toReg</param>-->
+            <!--</interceptor-ref>-->
+        </action>
+
+    </package>
+</struts>
