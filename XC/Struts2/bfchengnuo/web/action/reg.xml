@@ -14,6 +14,17 @@
             <result name="input">/reg/reg.jsp</result>
             <result name="regView">/reg/reg.jsp</result>
 
+            <!--文件上传过滤相关-->
+            <interceptor-ref name="defaultStack">
+                <!-- 设置文件上传的上限,字节 -->
+                <param name="fileUpload.maximumSize">1024000</param>
+                <!-- 允许上传的扩展名 -->
+                <param name="fileUpload.allowedExtensions">.jpg,.text</param>
+                <!--设置允许的文件类型-->
+                <param name="fileUpload.allowedTypes">image/jpg,image/jpeg</param>
+                <!--错误信息可写在Action相关-->
+            </interceptor-ref>
+
             <!-- 去校验的第三种方式：覆盖法指定跳过的方法，这个写法在配置文件中也可以找到 -->
             <!--<interceptor-ref name="defaultStack">-->
                 <!--<param name="validation.excludeMethods">input,back,cancel,toReg</param>-->

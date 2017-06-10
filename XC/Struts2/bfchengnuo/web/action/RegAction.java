@@ -16,6 +16,7 @@ public class RegAction extends ActionSupport {
     private String age;
 
     // 上传文件相关，以及获取的文件名和类型
+    // 如果是上传的多个文件，换成数组就好了
     private File img;
     private String imgFileName;
     private String imgContentType;
