@@ -31,5 +31,19 @@
             <!--</interceptor-ref>-->
         </action>
 
+        <action name="TokenAction_*" class="com.bfchengnuo.web.action.TokenAction" method="{1}">
+            <result name="success">/reg/success.jsp</result>
+            <result name="regView">/reg/tokenReg.jsp</result>
+            <!--指定 Token 验证失败后怎么办-->
+            <result name="invalid.token">/reg/tokenReg.jsp</result>
+
+            <!--指定拦截器栈，这样会覆盖默认栈，所以需要手动再添加一次-->
+            <interceptor-ref name="token">
+                <!--排除方法-->
+                <param name="excludeMethods">toReg</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+        </action>
+
     </package>
 </struts>
