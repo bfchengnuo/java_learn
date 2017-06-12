@@ -5,6 +5,8 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <!--<constant name="struts.custom.i18n.resources" value="com.bfchengnuo.web.action."/>-->
+    
     <!--可以继承，它配置了很多默认值，如 type 等-->
     <package name="regPkg" namespace="/reg" extends="struts-default">
         <action name="RegAction_*" class="com.bfchengnuo.web.action.RegAction" method="{1}">
@@ -43,6 +45,14 @@
                 <param name="excludeMethods">toReg</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
+        </action>
+
+        <action name="WaitAction" class="com.bfchengnuo.web.action.WaitAction">
+            <result>/reg/success.jsp</result>
+            <result name="wait">/wait.jsp</result>
+            <!--执行等待拦截器不在默认栈中，一般添加到最后就行-->
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="execAndWait"/>
         </action>
 
     </package>
