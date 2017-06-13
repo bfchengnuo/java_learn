@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!-- 配置常量，这个是设置请求后缀的，默认 action；最后的 “,,” 表示结尾空也可以 -->
+    <constant name="struts.action.extension" value="do,,"/>
+    <!-- 配置开发模式，可以自动重新加载国际化资源文件和配置文件 -->
+    <constant name="struts.devMode" value="true"/>
+
+    <!--可以继承，它配置了很多默认值，如 type 等-->
+    <package name="HelloWorld" namespace="/one" extends="struts-default">
+        <!--配置默认的 action 也就是在当前的命名空间下，如果找不到 action 的时候访问这个-->
+        <default-action-ref name="HelloWorldAction"/>
+        <!--设置默认的 class 引用，也就是 action 可以不用配 class 了-->
+        <default-class-ref class="com.bfchengnuo.web.action.HelloWorld"/>
+
+        <action name="HelloWorldAction" class="com.bfchengnuo.web.action.HelloWorld">
+            <!--配置返回值相关，name 就是返回值，如果是 success 可以省略-->
+            <!--父类中指定了默认的 type 为 dispatcher 也就是转发-->
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="ActionNoClass">
+            <result>/index.jsp</result>
+        </action>
+
+        <!--使用通配符来实现动态方法的调用；避免使用 ！-->
+        <action name="HWAction_*" class="com.bfchengnuo.web.action.HelloWorld" method="{1}">
+            <!--每一个返回值对应一个方法-->
+            <result name="success">/index.jsp</result>
+            <result name="save">/index.jsp</result>
+            <result name="test">/index.jsp</result>
+        </action>
+    </package>
+
+    <!--模块化-->
+    <include file="com/bfchengnuo/web/action/reg.xml"/>
+    <include file="com/bfchengnuo/interceptor/login.xml"/>
+</struts>

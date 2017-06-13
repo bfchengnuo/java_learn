@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="Login" extends="struts-default" namespace="/login">
+        <!--配置自定义拦截器-->
+        <interceptors>
+            <!--注册拦截器-->
+            <interceptor name="loginInterceptor" class="com.bfchengnuo.interceptor.LoginInterceptor" />
+
+            <!--配置自定义拦截器栈-->
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <!--可以定义默认的栈-->
+        <!--<default-interceptor-ref name="loginStack"/>-->
+        
+        <!--定义全局的返回结果-->
+        <!--<global-results>-->
+            <!--<result name="login">/login.jsp</result>-->
+        <!--</global-results>-->
+        
+        <action name="Login_*" class="com.bfchengnuo.interceptor.LoginAction" method="{1}">
+            <result>/reg/success.jsp</result>
+            <result name="login">/login.jsp</result>
+            <result name="toLoginView">/login.jsp</result>
+        </action>
+    </package>
+</struts>
