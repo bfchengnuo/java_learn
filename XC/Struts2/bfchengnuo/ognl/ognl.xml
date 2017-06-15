@@ -14,6 +14,8 @@
 
             <!--专门的标签测试页-->
             <result>/ognl/tagtest.jsp</result>
+
+            <result name="input">/reg/error.jsp</result>
         </action>
     </package>
 </struts>

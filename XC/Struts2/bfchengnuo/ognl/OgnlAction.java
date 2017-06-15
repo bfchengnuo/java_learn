@@ -31,9 +31,12 @@ public class OgnlAction extends ActionSupport {
     private void initData() {
         // 往各个域中存储数据
         ServletActionContext.getRequest().setAttribute("name","request-name");
+        if (ServletActionContext.getRequest().getSession() == null) {
+            System.out.println("session--Null");
+        }
         ServletActionContext.getRequest().getSession().setAttribute("name","session-name");
         ServletActionContext.getServletContext().setAttribute("name","application-name");
-        ServletActionContext.getContext().getValueStack().set("name","request-name");
+        ServletActionContext.getContext().getValueStack().set("name","vs-name");
 
         popList();
     }

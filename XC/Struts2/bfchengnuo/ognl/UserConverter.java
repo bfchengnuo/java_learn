@@ -19,7 +19,7 @@ public class UserConverter extends StrutsTypeConverter {
             if (ss.length > 0) {
                 User user = new User();
                 user.setName(ss[0]);
-                user.setName(ss[1]);
+                user.setAge(ss[1]);
                 return user;
             }
         }

@@ -33,18 +33,18 @@
     <%-- 使用单引号输出常量 --%>
     输出常量：<s:property value="'is constant'"/> <br>
     <%-- 关闭自动转义 --%>
-    <s:property value="<hr>" escape="false"/>
+    <s:property value="'<h1>取消了转义</h1>'" escape="false"/> <br>
     <hr>
 
     关于设置值的标签....<br>
-    s:set(如果没有指定范围则默认保存在 ActionContext 的大 Map 中)---><s:set var="s-setName" value="loli"/>
-    <%-- 无论是从那个域取数据，如果找不到最终都会到这个大 Map 自身中去找 --%>
-    <s:property value="s-setName"/> <br>
+    s:set(如果没有指定范围则默认保存在 ActionContext 的大 Map 中)---><s:set var="s_setName" value="'loli'"/>
+    <%-- 无论是从那个域取数据，如果找不到最终都会到这个大 Map 自身中去找, # 就是 ActionContext.getContext() --%>
+    <s:property value="#s_setName"/> <br>
     <hr>
 
     s:push(将对象放到值栈的栈顶，标签结束后会自动删除)---><br>
-    <s:push value="Lolicon">
-        <%-- 默认取栈顶的对象，并且调用 toString 方法 --%>
+    <%-- property 默认取栈顶的对象，并且调用 toString 方法 --%>
+    <s:push value="'Lolicon'">
         <s:property/>
     </s:push>
     <hr>
@@ -52,21 +52,26 @@
     s:bean(创建新的 javabean 到栈顶；如果指定 var 会保存到 ActionContext 中，如果不指定，在标签结束后从值栈移除引用后就无法取得数据)---->
     <s:bean name="com.bfchengnuo.domain.User" var="mybean">
         <%-- 属性赋值 --%>
-        <s:param name="name" value="奏"/>
+        <s:param name="name" value="'小奏'"/>
         <s:property value="name"/>
     </s:bean>
     <br>
     <%-- # 就代表从大 Map 中找吧 --%>
-    <s:property value="#mybean.name"/>
+    存储的 name 为（ActionContext 中）：<s:property value="#mybean.name"/>
     <hr>
 
-    s:action(在 JSP 中直接调用某个 Action)----->
+    s:action(在 JSP 中直接调用某个 Action)，页面包含进来-----> <br>
     <%-- executeResult 属性可以指定是否把页面包含进来 --%>
-    <s:action name="HelloWorldAction" namespace="/one" executeResult="true"/>
+    <%--<s:action name="HelloWorldAction" namespace="/one" executeResult="true"/>--%>
+    <s:action name="HelloWorldAction" namespace="/one" executeResult="true">
+        <s:param name="user.name" value="'Lolicon'"/>
+        <s:param name="name" value="'Loli'"/>
+        <s:param name="age" value="'14'"/>
+    </s:action>
     <hr>
 
     s:iterator(迭代器，每次迭代会把数据放在栈顶)---> <br>
-    <table border="0" cellspacing="1">
+    <table border="0" cellspacing="1" bgcolor="#db7093">
         <tr>
             <td>姓名</td>
             <td>年龄</td>
@@ -88,9 +93,10 @@
     <hr>
 
     s:if(支持elseif)----><br>
-    age:
-    <s:if test="age < 10">小于10</s:if>
-    <s:elseif test="age > 20">大于20</s:elseif>
+    <s:set var="age" value="14"/>
+    age:<s:property value="#age"/> <br>
+    <s:if test="#age < 10">小于10</s:if>
+    <s:elseif test="#age > 20">大于20</s:elseif>
     <s:else>10-20</s:else>
     <hr>
 
@@ -111,9 +117,14 @@
     </s:iterator>
     <%--
         定义 Map： #{'key':'val','key2':'val'} ；需要加 # 哦
-        property 取的时候直接 =key 、 =value 就行了
+        property 取的时候直接 value=key 、 value=value 就行了
         因为放在栈顶的就是 Entry
     --%>
+    <hr>
+
+    调用方法---> <br>
+    nameList.size: <s:property value="nameList.size"/> <br>
+    nameList.isEmpty: <s:property value="nameList.isEmpty"/>
 
 </body>
 </html>
