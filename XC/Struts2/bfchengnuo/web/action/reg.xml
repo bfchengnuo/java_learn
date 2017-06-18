@@ -55,5 +55,12 @@
             <interceptor-ref name="execAndWait"/>
         </action>
 
+        <action name="FileAction" class="com.bfchengnuo.web.action.FileAction" method="stream">
+            <result name="stream" type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">is</param>
+                <param name="contentDisposition">attachment;filename="${fileName}.jpg"</param>
+            </result>
+        </action>
     </package>
 </struts>
