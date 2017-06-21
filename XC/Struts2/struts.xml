@@ -40,4 +40,5 @@
     <include file="com/bfchengnuo/web/action/reg.xml"/>
     <include file="com/bfchengnuo/interceptor/login.xml"/>
     <include file="com/bfchengnuo/ognl/ognl.xml"/>
+    <include file="com/bfchengnuo/validate/Validate.xml"/>
 </struts>

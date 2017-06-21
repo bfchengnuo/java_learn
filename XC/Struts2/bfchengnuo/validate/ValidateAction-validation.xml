@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="name">
+        <field-validator type="requiredstring">
+            <message>用户名不能为空</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="minLength">5</param>
+            <param name="maxLength">10</param>
+            <message>name:${name} must ${minLength} - ${maxLength}</message>
+        </field-validator>
+
+        <!--<field-validator type="email">-->
+            <!--<message>xxxx</message>-->
+        <!--</field-validator>-->
+    </field>
+
+    <field name="age">
+        <field-validator type="required">
+            <message>年龄不能为空</message>
+        </field-validator>
+
+        <field-validator type="int">
+            <param name="min">12</param>
+            <param name="max">16</param>
+            <message>must 12 - 16</message>
+        </field-validator>
+    </field>
+
+    <!-- 使用 OGNL 表达式校验两次密码是否相同 -->
+    <validator type="expression">
+        <param name="expression">pwd==confirmPwd</param>
+        <message>两次密码不同</message>
+    </validator>
+</validators>
