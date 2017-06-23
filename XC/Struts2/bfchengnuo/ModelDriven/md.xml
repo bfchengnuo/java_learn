@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="MdPkg" namespace="/md" extends="struts-default">
+        <action name="MdAction_*" class="com.bfchengnuo.ModelDriven.MdAction" method="{1}">
+            <result>/validate/success.jsp</result>
+            <result name="toView">/md/reg.jsp</result>
+            <result name="input">/md/reg.jsp</result>
+        </action>
+
+        <action name="NewMdAction_*" class="com.bfchengnuo.ModelDriven.NewMdAction" method="{1}">
+            <result>/validate/success.jsp</result>
+            <result name="toView">/md/reg.jsp</result>
+            <result name="input">/md/reg.jsp</result>
+
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+        </action>
+    </package>
+</struts>
