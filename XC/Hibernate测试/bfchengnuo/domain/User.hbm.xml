@@ -9,7 +9,8 @@
     <class name="User" table="user">
         <!-- id 是指定主键 -->
         <id name="id" column="id" type="java.lang.Integer">
-            <!--指定主键值的生成策略，用于主键的自增长，一般有7种方式，比较熟的 uuid-->
+            <!--指定主键值的生成策略，用于主键的自增长，貌似有11种方式，常用的有7种-->
+            <!--mysql 可以使用下面的或者 increment-->
             <generator class="identity"/>
             <!--<generator class="native">-->
                 <!--<param name="数据库对应的序列名"/>-->

@@ -15,6 +15,12 @@
         <!--显示 sql 语句-->
         <property name="show_sql">true</property>
 
+        <!--让 Hibernate 自动创建表；create 每次都会创建，update 如果表结构没变化就保留-->
+        <property name="hbm2ddl.auto">update</property>
+        
+        <!--允许使用 getCurentSession 的方式获取 Session-->
+        <property name="current_session_context_class">thread</property>
+
         <!--要管理的映射文件，放在最后-->
         <mapping resource="com/bfchengnuo/domain/User.hbm.xml"/>
     </session-factory>
