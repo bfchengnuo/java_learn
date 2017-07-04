@@ -3,6 +3,9 @@ package com.bfchengnuo.util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 /**
  * Created by 冰封承諾Andy on 2017/6/29.
@@ -14,7 +17,8 @@ final public class HibernateUtil {
     // 线程局部模式
     private static ThreadLocal<Session> threadLocal = new ThreadLocal<>();
 
-    private HibernateUtil() {}
+    private HibernateUtil() {
+    }
 
     static {
         sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -34,5 +38,31 @@ final public class HibernateUtil {
             threadLocal.set(session);
         }
         return session;
+    }
+
+    // 通用的查询语句
+    public static List executeQuery(String hql, Object[] parameters) {
+        Session session = null;
+        List list = null;
+
+        try {
+            session = openSession();
+            Query query = session.createQuery(hql);
+            // 参数绑定判断
+            if (parameters != null && parameters.length > 0) {
+                for (int i = 0; i < parameters.length; i++) {
+                    query.setParameter(i, parameters[i]);
+                }
+            }
+            list = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return list;
     }
 }
