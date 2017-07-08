@@ -7,10 +7,10 @@
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">******</property>
+        <property name="connection.password">123456</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/hibernatetest?useUnicode=true&amp;characterEncoding=UTF-8 </property>
         <!-- 设置方言,让 Hibernate 明确使用的是那种数据库 -->
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
         <!--显示 sql 语句-->
         <property name="show_sql">true</property>
@@ -21,7 +21,12 @@
         <!--允许使用 getCurentSession 的方式获取 Session-->
         <property name="current_session_context_class">thread</property>
 
+        <!--临时解决方案-->
+        <!--<property name="hibernate.id.new_generator_mappings">false</property>-->
+
         <!--要管理的映射文件，放在最后-->
+        <!--注解配置的bean-->
+        <mapping class="com.bfchengnuo.domain.Message"/>
         <mapping resource="com/bfchengnuo/domain/User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

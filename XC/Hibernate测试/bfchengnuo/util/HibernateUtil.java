@@ -2,7 +2,9 @@ package com.bfchengnuo.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -21,7 +23,10 @@ final public class HibernateUtil {
     }
 
     static {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
+        // sessionFactory = new Configuration().configure().buildSessionFactory();
+        // 用StandarServiceRegistryBuilder取代了ServiceRegistryBuilder
+        StandardServiceRegistry serviceRegistry=new StandardServiceRegistryBuilder().configure().build();
+        sessionFactory=new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
     }
 
     // 返回全新的 Session
