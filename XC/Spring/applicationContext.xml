@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.bfchengnuo.domain.User">
+        <property name="name" value="佳芷"/>
+        <property name="age" value="12"/>
+    </bean>
+
+    <bean id="loli" class="com.bfchengnuo.domain.Loli">
+        <property name="desc" value="lovely"/>
+        <property name="user" ref="user"/>
+    </bean>
+
+</beans>
