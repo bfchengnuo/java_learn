@@ -1,10 +1,14 @@
 package com.bfchengnuo.test;
 
+import com.bfchengnuo.domain.CollectionTest;
 import com.bfchengnuo.domain.Loli;
 import com.bfchengnuo.domain.User;
+import com.bfchengnuo.util.ApplicationContextUtil;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 /**
  * Created by 冰封承諾Andy on 2017/7/14.
@@ -13,9 +17,34 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        getBeanAC();
+        // getBeanAC();
         // getBeanFactory();
 
+        collectionTest();
+
+    }
+
+    private static void collectionTest() {
+        ApplicationContext ac = ApplicationContextUtil.getAc();
+        CollectionTest collectionTest = (CollectionTest) ac.getBean("collectionTest");
+
+        // 遍历数组
+        System.out.println("-----------数组遍历-----------");
+        for (String s : collectionTest.getStrs()) {
+            System.out.println(s);
+        }
+
+        // 遍历 List
+        System.out.println("-----------List遍历-----------");
+        for (User user : collectionTest.getUsers()) {
+            System.out.println(user.getName() + "::" + user.getAge());
+        }
+
+        // 遍历 Map
+        System.out.println("-----------Map遍历-----------");
+        for (Map.Entry<String, User> entry : collectionTest.getMap().entrySet()) {
+            System.out.println(entry.getKey() + "::" + entry.getValue().getName() + "-" + entry.getValue().getAge());
+        }
     }
 
     // 通过工厂获取 bean，只有在获取的时候（get）才会创建相应的 bean 对象

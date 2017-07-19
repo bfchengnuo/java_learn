@@ -7,10 +7,43 @@
         <property name="name" value="佳芷"/>
         <property name="age" value="12"/>
     </bean>
+    <bean id="user2" class="com.bfchengnuo.domain.User">
+        <property name="name" value="凝萱"/>
+        <property name="age" value="13"/>
+    </bean>
 
     <bean id="loli" class="com.bfchengnuo.domain.Loli">
         <property name="desc" value="lovely"/>
         <property name="user" ref="user"/>
+    </bean>
+
+    <bean id="collectionTest" class="com.bfchengnuo.domain.CollectionTest">
+        <!--装载数组数据-->
+        <property name="strs">
+            <list>
+                <value>str1</value>
+                <value>str2</value>
+                <value>str3</value>
+                <value>str4</value>
+            </list>
+        </property>
+        <!--装载 List 数据，根据特性可以重复引用，并且是有顺序的-->
+        <property name="users">
+            <list>
+                <ref bean="user"/>
+                <ref bean="user2"/>
+                <ref bean="user"/>
+                <ref bean="user2"/>
+            </list>
+        </property>
+        <!--装载 Map 集合数据，根据特性不能有重复，后面会覆盖前面，当然只是 key 不同就行，无序-->
+        <property name="map">
+            <map>
+                <entry key="user" value-ref="user"/>
+                <entry key="user2" value-ref="user2"/>
+                <entry key="test" value-ref="user2"/>
+            </map>
+        </property>
     </bean>
 
 </beans>
