@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--启用注解-->
+    <context:annotation-config/>
+
+    <!--分散配置，引入 prop 文件；如果引入多个文件可以用逗号分割-->
+    <context:property-placeholder location="temp.properties"/>
 
     <bean id="user" class="com.bfchengnuo.domain.User">
         <property name="name" value="佳芷"/>
         <property name="age" value="12"/>
     </bean>
+    <!-- 使用构造函数进行装填 -->
     <bean id="user2" class="com.bfchengnuo.domain.User">
-        <property name="name" value="凝萱"/>
-        <property name="age" value="13"/>
+        <constructor-arg index="0" type="java.lang.String" value="凝萱"/>
+        <constructor-arg name="age" type="int" value="13"/>
+        <!--<constructor-arg index="1" value="13"/>-->
+    </bean>
+    <bean id="user3" class="com.bfchengnuo.domain.User">
+        <property name="name" value="${name}"/>
+        <property name="age" value="${age}"/>
     </bean>
 
-    <bean id="loli" class="com.bfchengnuo.domain.Loli">
+    <bean id="loli" class="com.bfchengnuo.domain.Loli" autowire="byName">
         <property name="desc" value="lovely"/>
-        <property name="user" ref="user"/>
+        <!--使用自动装配 user 属性就不用写（不推荐使用）-->
+        <!--手动指定需要下面代码-->
+        <!--<property name="user" ref="user"/>-->
     </bean>
 
     <bean id="collectionTest" class="com.bfchengnuo.domain.CollectionTest">
@@ -43,6 +58,13 @@
                 <entry key="user2" value-ref="user2"/>
                 <entry key="test" value-ref="user2"/>
             </map>
+        </property>
+        <!--装填 set 集合-->
+        <property name="userSet">
+            <set>
+                <ref bean="user"/>
+                <ref bean="user2"/>
+            </set>
         </property>
     </bean>
 

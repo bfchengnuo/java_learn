@@ -18,9 +18,9 @@ public class Main {
 
     public static void main(String[] args) {
         // getBeanAC();
-        // getBeanFactory();
+        getBeanFactory();
 
-        collectionTest();
+        // collectionTest();
 
     }
 
@@ -44,6 +44,12 @@ public class Main {
         System.out.println("-----------Map遍历-----------");
         for (Map.Entry<String, User> entry : collectionTest.getMap().entrySet()) {
             System.out.println(entry.getKey() + "::" + entry.getValue().getName() + "-" + entry.getValue().getAge());
+        }
+
+        // 遍历 Set
+        System.out.println("-----------Set遍历-----------");
+        for (User user : collectionTest.getUserSet()) {
+            System.out.println(user.getName() + "::" + user.getAge());
         }
     }
 
