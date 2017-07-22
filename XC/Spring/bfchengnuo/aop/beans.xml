@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置目标对象（被代理对象）-->
+    <bean id="standardLoli" class="com.bfchengnuo.aop.StandardLoli">
+        <property name="flag" value="欧尼酱"/>
+    </bean>
+
+    <!--前置配置通知-->
+    <bean id="myMethodBeforeAdvice" class="com.bfchengnuo.aop.MyMethodBeforeAdvice"/>
+    <!--环绕通知配置-->
+    <bean id="myMethodInterceptor" class="com.bfchengnuo.aop.MyMethodInterceptor"/>
+    <!--后置通知-->
+    <bean class="com.bfchengnuo.aop.MyAfterReturningAdvice" id="myAfterReturningAdvice"/>
+    <!--异常通知-->
+    <bean id="myThrowsAdvice" class="com.bfchengnuo.aop.MyThrowsAdvice"/>
+
+    <!--自定义切入点，有的叫引入通知-->
+    <bean id="myPointcutAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <!--设置的是前置通知的切入点-->
+        <property name="advice" ref="myMethodBeforeAdvice"/>
+        <!--设置在那个方法进行切入-->
+        <property name="mappedNames">
+            <list>
+                <!--是可以使用通配符的-->
+                <value>hug</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置代理对象，Spring 提供-->
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--代理接口集-->
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.bfchengnuo.aop.Loli</value>
+            </list>
+        </property>
+        <!--将通知织入代理对象,相当于把通知和代理对象建立关系-->
+        <property name="interceptorNames">
+            <list>
+                <!--<value>myMethodBeforeAdvice</value>-->
+                <value>myPointcutAdvisor</value>
+                <value>myMethodInterceptor</value>
+                <value>myAfterReturningAdvice</value>
+                <value>myThrowsAdvice</value>
+            </list>
+        </property>
+        <!--配置被代理对象-->
+        <property name="target" ref="standardLoli"/>
+    </bean>
+</beans>
