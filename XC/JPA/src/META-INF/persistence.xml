@@ -10,6 +10,8 @@
 
         <!-- 添加持久化类 -->
         <class>com.bfchengnuo.domain.Person</class>
+        <class>com.bfchengnuo.domain.User</class>
+        <class>com.bfchengnuo.domain.Order</class>
 
         <!-- 
           配置二级缓存的策略 
@@ -32,7 +34,7 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
             <!-- 二级缓存相关 -->
             <!--<property name="hibernate.cache.use_second_level_cache" value="true"/>-->
