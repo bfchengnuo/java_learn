@@ -1,4 +1,4 @@
-package test.java.com.bfchengnuo.domain;
+package test.com.bfchengnuo.domain;
 
 import com.bfchengnuo.domain.Order;
 import com.bfchengnuo.domain.User;
