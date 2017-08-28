@@ -14,7 +14,9 @@ import java.io.IOException;
 @WebFilter(filterName = "mCacheFilter",
         urlPatterns = {"*.jpg", "*.png", "*.css", "*.js"},
         initParams = {
-                @WebInitParam(name = "time", value = "10")
+                @WebInitParam(name = "jpg", value = "10"),
+                @WebInitParam(name = "css", value = "10"),
+                @WebInitParam(name = "js", value = "10")
         })
 public class CacheFilter implements javax.servlet.Filter {
     private FilterConfig mConfig;
