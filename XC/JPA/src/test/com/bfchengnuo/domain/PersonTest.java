@@ -12,9 +12,9 @@ import javax.persistence.TypedQuery;
 /**
  * Person Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>08/13/2017</pre>
+ * JPA 入门测试栗子
+ * 进行简单的 CRUD 操作，以及 JPQL 的使用
+ * 只用到了一个实体类：Person
  */
 public class PersonTest {
 

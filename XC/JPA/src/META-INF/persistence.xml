@@ -36,7 +36,7 @@
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
-            <!-- 二级缓存相关 -->
+            <!-- 二级缓存相关，需要使用独立的配置文件 -->
             <!--<property name="hibernate.cache.use_second_level_cache" value="true"/>-->
             <!--<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>-->
             <!--<property name="hibernate.cache.use_query_cache" value="true"/>-->

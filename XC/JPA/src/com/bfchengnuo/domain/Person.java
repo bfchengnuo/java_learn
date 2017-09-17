@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 /**
  * Created by 冰封承諾Andy on 2017/8/13.
+ * 最简单的测试入门栗子
  */
 @Entity
 public class Person {

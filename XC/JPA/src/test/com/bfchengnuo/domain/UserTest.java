@@ -10,12 +10,15 @@ import javax.persistence.Persistence;
 
 /**
  * Created by 冰封承諾Andy on 2017/8/17.
+ *
+ * 一对多/多对一 测试用例
+ * 以用户和订单的关系为例
  */
 public class UserTest {
 
     @Test
     public void save() {
-        // 这句话执行后就会创建相应的表，前提是配置了相关配置;相当于 SessionFactory
+        // 这句话执行后就会创建相应的表，前提是配置了相关配置（auto）;相当于 SessionFactory
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpaDemo");
         EntityManager em = factory.createEntityManager();
         // 开启事务

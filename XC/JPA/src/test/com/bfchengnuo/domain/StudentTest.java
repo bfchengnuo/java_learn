@@ -11,9 +11,9 @@ import javax.persistence.Persistence;
 /**
  * Student Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>08/20/2017</pre>
+ * 多对多测试用例
+ * 以老是和学生的关系为例
+ *
  */
 public class StudentTest {
 

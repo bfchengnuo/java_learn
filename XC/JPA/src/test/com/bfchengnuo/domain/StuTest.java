@@ -10,9 +10,8 @@ import javax.persistence.Persistence;
 /**
  * Stu Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>08/21/2017</pre>
+ * 测试联合主键
+ *      使用到的类为：Stu 和 StuPK
  */
 public class StuTest {
 
