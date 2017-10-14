@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  context-path: /
+
+# 自定义属性
+girl:
+  name: 沛凝
+  age: 12

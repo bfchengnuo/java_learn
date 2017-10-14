@@ -1,0 +1,17 @@
+# 配置 spring 的“环境”，加载那个配置文件
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  tomcat:
+    uri-encoding: utf-8

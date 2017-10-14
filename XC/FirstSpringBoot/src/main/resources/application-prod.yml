@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  context-path: /myapp
+
+# 自定义属性
+girl:
+  name: 佳芷
+  age: 12
