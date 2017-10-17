@@ -33,4 +33,9 @@
         <!--<property name = "sqlSessionFactoryBeanName" value = "sqlSessionFactory" />-->
     </bean>
 
+    <!--配置通用 Mapper-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bfchengnuo.mapper"/>
+    </bean>
+
 </beans>
