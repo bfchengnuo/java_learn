@@ -24,4 +24,21 @@ public class GirlService {
         return girlMapper.selectByExample(example);
     }
 
+    public Girl queryGirl(Integer id) {
+        return girlMapper.selectByPrimaryKey(id);
+    }
+
+    public boolean saveGirl(Girl girl) {
+        return girlMapper.insert(girl) == 1;
+    }
+
+    public boolean updateGirl(Girl girl) {
+        // 只更新不为空的字段
+        return girlMapper.updateByPrimaryKeySelective(girl) == 1;
+    }
+
+    public boolean deleteGirl(Integer id) {
+        return girlMapper.deleteByPrimaryKey(id) == 1;
+    }
+
 }
