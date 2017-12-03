@@ -10,7 +10,7 @@ import redis.clients.jedis.ShardedJedisPool;
 
 /**
  * 集群式的连接池
- * 
+ * 如果使用官方提供的集群方式配置连接池，只是把 ShardedJedis 换成 JedisCluster
  */
 public class ShardedJedisPoolDemo {
 
