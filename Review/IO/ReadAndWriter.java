@@ -25,7 +25,6 @@ public class ReadAndWriter {
 
 
 //        data.getBytes();
-//        byte[] a;
     }
 
     public void WriterFile() {
@@ -128,36 +127,8 @@ public class ReadAndWriter {
         }
     }
 
+    // 关于转换流相关，属于字符流的体系
+    BufferedReader bufr = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bufw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    public static void copy() {
-        BufferedInputStream bufis = null;
-        BufferedOutputStream bufos = null;
-        try {
-            bufis = new BufferedInputStream(new FileInputStream("test.txt"));
-            bufos = new BufferedOutputStream(new FileOutputStream("test.txt"));
-
-            int len;
-            // 先把文件的部分内容读到缓冲区（字节数组），再从缓冲区一个一个的读
-            while ((len = bufis.read()) != -1) {
-                bufos.write(len);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (bufis != null) {
-                try {
-                    bufis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (bufos != null) {
-                try {
-                    bufos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }
