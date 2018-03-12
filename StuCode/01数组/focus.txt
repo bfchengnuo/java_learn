@@ -1,0 +1,84 @@
+数组: 一组[类型相同]而且[存储空间连续]的数据
+
+数组的基本用法:
+	如何定义数组:
+	  1st way : int[] data1 = new int[3];
+	  2nd way : int[] data2 = new int[]{11,22,33};
+	  3rd way : int[] data3 = {11,22,33};
+
+	如何访问数组的某个元素:
+		使用下标索引值
+		System.out.println(data[0]);
+		System.out.println(data[1]);
+		System.out.println(data[2]);
+
+	如何得到数组的元素个数:
+		System.out.println(data.length);//属性 没有()
+
+	如何遍历数组:
+		1st way : for循环 + []
+		for(int i = 0;i<data.length;i++){
+			System.out.println(data[i]);
+		}
+		
+		2nd way : foreach / forin   since JDK5.0
+		for(int x : data){
+			System.out.println(x);
+		}
+
+数组复制:
+	1:直接赋值				不行
+		*: 因为根本没有创建新的数组 只是老数组多了个名字而已
+	2:纯手动复制				太笨
+	3:克隆对象的方法     clone()		不行
+	================= 垫场结束 ==================
+
+	*: System.arraycopy(1,2,3,4,5);
+		1:要复制的原数组
+		2:原数组的起始位置
+		3:要复制到的目标数组
+		4:目标数组的起始位置
+		5:要复制多少个元素
+
+	*: 这个方法的第一个参数和第三个参数可以是同一个数组
+		从而实现数组元素的前后移动
+
+数组排序:
+	1st way : 手动冒泡
+		循环嵌套 + 变量交换
+		循环嵌套 请把握好两层循环的循环条件
+		
+		for(int x = 0;x<data.length-1;x++){
+			for(int y = 0;y<data.length-1-x;y++){
+				if(data[y] > data[y+1]){
+					变量交换;
+				}
+			}
+		}
+
+	2nd way : 自动排序
+		java.util.Arrays.sort(要排序的数组);
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
