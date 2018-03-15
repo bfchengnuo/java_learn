@@ -1,0 +1,55 @@
+String: 
+ 和长度有关的：
+	length() : 得到字符串的字符个数
+		*:无论中文还是英文还是数字都是一个字符请注意 转义字符是一个字符
+
+ 和变成数组有关的：
+	toCharArray() : 将字符串变成字符数组 让字符串现出原形
+	getBytes() : 将字符串变成字节数组
+	charAt(int) : 从字符串当中取出一个字符
+	split(String) : 用指定的内容将字符串分割成字符串数组
+		*:String str = ",a,b,c"; -> split(",") => 4
+		  String str = "a,b,c,"; -> split(",") => 3
+
+ 和判断内容有关的：
+	equals(String) : 比较两个字符串的内容是否一样
+	equalsIgnoreCase(String) : 忽略大小写的内容比较
+	contains(String) : 测试字符串是否包含指定内容
+	startsWith(String) : 测试字符串是否以指定内容开头
+	endsWith(String) : 测试字符串是否以指定内容结尾
+
+ 和处理内容有关的：
+	*: 都不会改变原有字符串的内容 
+		只是将符合要求的新字符串返回回来
+	toUpperCase() : 将字符串内容全部转换成大写
+	toLowerCase() : 将字符串内容全部转换成小写
+	replace(String,String) : 以指定的内容替换字符串 - 不支持正则
+	replaceFirst(String,String) : 以指定内容替换字符串当中第一次出现的内容
+	replaceAll(String,String) : 以指定的内容替换字符串 - 支持正则
+	substring(int) : 从指定位置截取到最后
+	substring(int,int) : 截取两个指定位置的字符串
+	trim() : 去除字符串开头和结尾的空白
+	
+ 和查找位置有关的:
+	indexOf(String) : 查找指定字符串第一次出现的位置
+	lastIndexOf(String) : 查找指定字符串最后一次出现的位置
+
+ 和类型装换有关的:
+	valueOf(X) : 将各种类型转换成字符串
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
