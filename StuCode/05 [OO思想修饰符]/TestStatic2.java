@@ -1,0 +1,21 @@
+public class TestStatic2{
+	public static void main(String[] args){
+		Student s1 = new Student("’≈»˝");
+		Student s2 = new Student("¿ÓÀƒ");
+		s1.singASong();
+		Student.cleanClassroom();
+	}
+}
+class Student{
+	String name;
+	public Student(String name){
+		this.name = name;
+	}
+	public void singASong(){
+		System.out.println(name + "œ¥À¢À¢ œ¥À¢À¢ ≈∂≈∂~");
+	}
+	public static void cleanClassroom(){
+		System.out.println("“ª…¡“ª…¡¡¡æßæß~");
+	}
+}
+
