@@ -1,0 +1,162 @@
+01.定义数组有几种方式? 请详述
+	a> int[] data = new int[3];
+	b> int[] data = new int[]{1,2,3};
+	c> int[] data = {1,2,3};
+
+
+02.遍历数组有几种方式? 请详述
+	a> for + 下标
+		for(int i = 0;i<data.length;i++){
+			System.out.println(data[i]);
+		}
+	b> foreach
+		for(int x : data){
+			System.out.println(x);
+		}
+
+
+03.手写冒泡排序，简述两层循环的作用分别是什么
+	for(int x = 0;x<data.length-1;x++){
+		for(int y = 0;y<data.length-1-x;y++){
+			if(data[y] > data[y+1]){
+				int temp = data[y];
+				data[y] = data[y+1];
+				data[y+1] = temp;
+			}
+		}
+	}
+
+	内层循环 代表一次从头到尾的比较过程
+		就是选出一个最大的数字的过程
+
+	外层循环 代表总共需要选出多少个大数
+
+
+04.Java面向对象的三大基本特征是什么？简述对三大基本特征的理解
+	封装: 用private将不想被外界访问的属性和方法隐藏起来
+	继承: 用extends关键字建立两个类之间is a的关系
+	多态: 一个对象总有多种称呼它的类型 父类类型 = 子类对象
+
+
+05.方法重载和方法覆盖有什么区别?
+	方法重载: 一个类当中 方法名字相同但是参数列表不同的多个方法
+	方法覆盖: 子类继承到父类的方法后 对方法实现并不满意从而进行重新实现
+		访问控制权限修饰符 不能更加严格
+		返回类型和方法名字和参数列表 必须完全相同
+		抛出的异常范围不能更大
+
+06.简述对构造方法的理解 并列举构造方法有何特别之处
+	构造方法是创建对象的收尾的步骤
+		使用构造方法可以在创建对象的同时完成属性的赋值
+	a> 没有返回类型 连void都没有
+	b> 因为构造方法的名字要和类名一模一样 所以通常首字母大写
+
+07.构造方法是否可以重载 是否可以覆盖 否则说明原因
+	可以重载 一个类可以有多个构造方法
+	不可以覆盖 因为覆盖建立在继承的前提下 
+		而构造方法不能被继承 所以无从谈起覆盖
+
+08.String  StringBuffer  StringBuilder
+	String 没有预留任何缓冲空间   
+	StringBuffer和StringBuilder底层都会提前预留缓冲空间
+		小规模的追加等等操作就可以在缓冲的空间内完成
+
+	StringBuffer 同一时间只允许一个线程进行操作
+		所以效率较低 但是不会出现并发错误
+	StringBuilder 同一时间允许多个线程同时进行操作
+		效率较高 但是可能会出现并发错误
+
+09.String类是否可以被继承 原因是
+	final修饰的最终类不能被继承
+
+10.String类有哪些常用方法?
+	和长度有关的: 
+		length()
+	和判断内容有关的:
+		equals()
+		equalsIgnoreCase()
+		startsWith()
+		endsWith()
+		contains()		
+	和处理改变内容有关的
+		toUpperCase()
+		toLowerCase()
+		replace()
+		replaceAll()
+		replaceFirst()
+		substring(1)
+		substring(1,2)
+		trim()
+	和查找位置有关的
+		indexOf()
+		lastIndexOf()
+	和变成数组有关的
+		toCharArray()
+		charAt()
+		getBytes()
+		split()
+	和转换有关的: valueOf()
+
+
+11.Java当中有哪些常见的修饰符 分别代表什么含义 分别可以修饰什么
+	private : 私有的 只有本类中可以使用的 能够修饰成员
+	(default) : 默认的 只有本包内可以使用的 能够修饰类和成员
+	protected : 受保护的 本包内可以使用而且包外有继承关系的子类中也可用 能够修饰成员
+	public : 公共的 哪里都可以使用的 可以修饰成员和类
+	final : 最终的 可以修饰变量 方法 类
+	static : 静态的 可以修饰属性 方法 代码块
+
+
+12.Java当中如何把一个byte[]类型的数组转换成一个String对象
+	String str = "ETOAK";
+	byte[] data = str.getBytes();
+	String ok = new String(data);
+
+
+13.使用static修饰的属性 方法 代码块有何特别之处?
+	属性 ： 静态属性 不是每个对象都有一份的
+		而是整个类共享同一份 不依赖任何一个对象存在
+		可以直接使用类名.属性名访问
+	方法 ： 静态方法 可以直接使用类名.方法名调用
+	代码块 ： 静态初始化块 通常用于初始化静态变量
+		在类第一次被加载的时候执行且只执行一次
+
+14.String s1 = new String("abc");语句创建了几个对象 说明原因
+	谢绝回答
+
+15.一个String类型的数组 将其中重复的字符去掉
+	只保留不重复的字符 如何实现	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
