@@ -1,0 +1,52 @@
+Object:
+	clone() : "克隆"对象的方法
+		1> 用public去重写Object类的clone方法
+		2> 返回类型可以协变成当前类型
+		3> 方法签名最后 应当由throws CloneNotSupportedException
+		4> 方法体当中利用super.clone()完成对象克隆
+		5> 当前类型必须实现Cloneable接口
+		6> 调用的地方请注意处理异常
+
+
+	finalize() : 对象的"遗言"方法
+		*: 对象在被gc带走之前 要去调用的方法
+		*: 主动调用gc  => 
+			System.gc();
+			Runtime.getRuntime().gc();
+	
+
+	toString() : 将一个对象转换成字符串形式体现出来
+		*: 必须把它灰常灰常的熟练应用
+
+
+	equals() : 制定一个类型的比较规则
+
+		a> 判断参数是否为null 如果为null 直接返回false
+		b> 判断参数是否不是当前类型 如果不是 则直接返回false
+			需要涉及运算符:instanceof
+		c> 判断参数是否==当前对象 如果是 直接返回true
+
+		1> 找到两个参与比较的对象
+			this  obj;
+		2> 按照需求比较两个对象的若干属性
+
+
+	hashCode() : 生成一个对象的散列码
+		什么叫散列 hash 哈希
+		散列 => 将一大组数据 分散排列成若干小组
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
