@@ -1,0 +1,6 @@
+Collection 是一个接口
+	是Java当中所有单值类型集合统一的父接口 = 规范
+
+Collections 是一个类
+	当中定义了大量的静态方法 都是为集合提供各种强大的功能
+		Collections.addAll();

@@ -1,0 +1,133 @@
+Java当中的包装类：
+	
+	Java当中的集合 当中只能存放对象在内存当中的地址
+		所以它是一个逻辑抽象虚拟结构
+		但是Java当中的基本数据类型 没法直接放入集合
+
+	醋      酱油       可乐 雪碧  芬达     七喜 雪花  花生油
+	boolean char       byte short int     long float double
+	Boolean Character  Byte Short Integer Long Float Double
+	醋坛子  酱油瓶子    罐子 罐子  罐子     罐子 罐子  桶	
+
+	*:基本数据类型不能直接放入集合 但是其对应的包装类对象可以啊
+	*:JDK5.0开始 基本数据类型和包装类类型的相互转换可以自动完成
+		从基本数据类型 - 包装类对象  自动打包
+		从包装类对象 - 基本数据类型  自动解包
+
+	*:其实包装类还扮演者工具类的角色和作用
+		它当中会提供一些很好用的方法
+		例如 Integer.parseInt();
+		     Boolean.parseBoolean();
+		     Double.parseDouble();
+
+集合 => 存放数据的容器
+
+		JCF => Java Collections Framework
+				Java集合框架
+
+
+	Collection			Map
+	[单值类型集合]			[键值对集合]
+					[主键对象唯一]
+
+  List               Set		SortedMap
+  [有序]		     [无序]		[主键对象有序且唯一]
+  [不唯一]	     [唯一]
+
+
+		    SortedSet
+		     [有序]
+		     [唯一]
+
+List:
+	ArrayList
+	LinkedList
+	Vector
+	Stack
+
+
+ArrayList:
+
+1.ArrayList的基本用法				*****
+	如何创建集合:
+		List<Integer> list = new ArrayList<>();
+		*:JDK5.0的泛型  JDK7.0的泛型自动推断
+	如何添加元素:
+		a> 一次添加一个:
+		  list.add(777);    ->涉及自动打包
+		b> 一次添加多个:
+		  Collections.addAll(list,444,555,66);
+		  *:涉及JDK5.0可变参数  [TestVarargs.java]
+	如何得到元素个数:
+		System.out.println(list.size());
+	如何得到第几个元素:
+		System.out.println(list.get(0));
+	如何遍历:
+		a>for + get()   b> foreach	JDK5.0
+		c>Iterator	d> lambda表达式	JDK8.0
+
+
+2.ArrayList删除元素的remove(int)
+	ArrayList提供了一个remove(int)的方法
+	用于删除对应的第几个元素 参数是下标索引值
+	另外 被删除的元素身后所有的元素会向前移动
+	所以 请以变化的眼光看问题~
+	请不要使用for + remove(i) 删除所有元素 
+	可以直接使用clear() 清空所有元素
+
+
+3.ArrayList还提供了一个remove(Object)
+	能够删除指定的那个元素
+	*：当集合当中存放的是Integer类型对象的时候
+		使用这个删除方法必须要保证传入的也是Integer对象
+		否则会被理解成指定的下标索引值 所以容易出现异常
+
+
+4.ArrayList那个传Object参数的remove(Object)
+	完全尊重equals()方法返回的结果
+	equals返回：
+	   true : 即便两个对象不一样 也被认定成一样 视作逻辑相等
+	   false : 即便两个对象是内存当中的同一个 也会被认定不同
+
+
+5.ArrayList删除元素尊重equals() 但是谁主张 谁举证
+	要被删除的元素主动调用equals() 跟集合当中的老元素进行比较
+	不会要求老元素调用方法~
+
+
+6.使用迭代器遍历集合的过程当中 
+	不允许对集合整体进行添加或者删除操作
+	否则触发并发修改异常 如果一定要去删除
+	请使用迭代器自身提供的car.remove();
+
+
+7.ArrayList构造方法可以直接传参指定底层数组的大小
+	默认只有10块空间 满了之后会动态扩容
+	但是如果程序员已经知道最终要存放多少元素
+	请构造方法传参 直接指定大小
+	以防止添加元素的过程多次触发扩容操作影响效率
+	ArrayList专属的方法:
+		ensureCapacity(int) :  扩容
+		trimToSize() :  缩容
+
+
+8.模拟实现ArrayList的所有核心功能
+	了解ArrayList是如何完成底层操作滴
+	以后我们不需要写这个类 但是要了解底层原理
+
+
+9.结合内存图 了解底层的操作过程
+
+
+
+
+
+
+
+
+
+
+
+
+
+
