@@ -1,0 +1,19 @@
+ArrayList和Vector底层都是以数组实现的
+
+1.同步特性不同 -> 是否支持多线程同时操作
+	ArrayList 同一时间允许多个线程同时进行操作
+		效率较高 但是可能出现并发错误	   - 肯德基
+	Vector 同一时间只允许一个线程进行操作
+		效率较低 但是绝对不会出现并发错误    - 把子肉
+
+2.它们底层实现不同 -> 扩容机制上
+	ArrayList 扩容机制
+		JDK6.0及之前		JDK7.0及之后
+		x*3/2+1			x+(x>>1)
+	Vector 扩容机制
+		new Vector(10)		new Vector(10,x)
+		*2			+x
+
+3.它们出现的版本不同
+	ArrayList     since JDK1.2
+	Vector	      since JDK1.0	[集合两大鼻祖之一]
