@@ -1,0 +1,18 @@
+1.包结构就不同
+	java.lang.Comparable	-> 语言基础包   String Integer
+	java.util.Comparator	-> 工具包      ArrayList...
+
+2.抽象方法不同
+	Comparable    compareTo(1)
+	Comparator    compare(1,2)
+
+3.语境语义完全不同
+	Comparable	adj.	有能力比较的
+	Comparator	n.	比较的工具
+	
+	如果一个类实现Comparable接口 代表这个类型是有能力比较的
+	它的对象可以直接添加进TreeSet当中
+
+	如果一个类实现Comparator接口 
+	代表这个类型是用来比较另一个类型的工具而已
+	它应该在TreeSet构造方法当中传参

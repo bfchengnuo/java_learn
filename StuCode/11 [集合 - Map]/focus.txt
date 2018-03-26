@@ -1,0 +1,63 @@
+Map => 键值对集合 => 映射 保存一个主键对象 和一个值对象的对应关系
+
+Map集合的通用方法：
+	如何创建Map对象:
+		Map<K,V> map = new HashMap<>();
+	如何添加元素:
+		一次添加一对儿:map.put(k,v);
+		一次添加另一个集合:map.putAll(另一个map);
+	如何得到元素个数:
+		System.out.println(map.size());
+	如何根据主键对象找到对应的值对象:
+		System.out.println(map.get(k));
+	如何判断是否包含指定的主键:
+		System.out.println(map.containsKey(k));
+	如何判断是否包含指定的值:
+		System.out.println(map.containsValue(v));
+	如何删除一行键值对:
+		map.remove(k);
+
+如何遍历Map集合 - 三种刀法:
+	keySet() : 得到所有主键对象组成的Set集合
+	values() : 得到所有值对象组成的Collection集合
+	entrySet() : 得到键值对记录对象组成的Set集合
+
+*：Map集合添加新的键值对的时候 如果遭遇了重复的主键 则
+	新来的键对象直接舍弃 新来的值对象替换原有值对象
+	键 是先入为主的键 值 是后来替换的值
+	靠着这种设计 可以更加方便的修改一个键值对
+
+*：无论使用keySet() values()或者entrySet() 得到的单值类型集合
+	其实都不是一个新集合 而是原本的Map换了个视角而已
+	所以只要进行删除操作 原本Map里面整行键值对对象都没有了
+
+关于HashMap:
+	HashMap它的put(k,v) get(k) containsKey(k) remove(k)
+		[所有和主键有关的方法]
+		都尊重hashCode() == equals()的比较机制
+		如果hashCode和equals认定相同
+		则:put() 会视作相同主键 舍弃主键替换值
+		   get() 会得到视作相同对象的那个对应的值
+		   containsKey() 会得到true
+		   remove() 能通过一个删除另一个
+
+关于TreeMap:
+	TreeMap它的put(k,v) get(k) containsKey(k) remove(k)
+		[所有和主键有关的方法]
+		都尊重 compareTo() 或者 compare()
+		如果compareTo()或者compare()永远不会返回0
+		则:put() 永远不会舍弃元素
+		   get() 永远直接返回null
+		   containsKey() 永远返回false
+		   remove() 永远删除失败
+
+
+
+
+
+
+
+
+
+		
+	

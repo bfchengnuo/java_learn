@@ -1,0 +1,50 @@
+最重要的 它们的同步特性不同 [多线程是否安全]
+	HashMap 同一时间允许多个线程同时进行操作
+		效率相对较高 但是可能出现并发错误
+
+	Hashtable 同一时间只允许一个线程进行操作
+		  效率相对较低 但是不会出现并发错误
+
+	*:JDK5.0开始 集合的并发包当中提供了
+		多线程高并发的场景下 更高效的ConcurrentHashMap
+		java.util.concurrent.ConcurrentHashMap
+		Java包的工具包的并发包的 支持并发的HashMap
+		
+	*:在JDK5.0的时候 集合的工具类当中出现了
+		Map<K,V> map = Collections.synchronizedMap(hashMap);
+				Collections.synchronizedList(arrayList);
+				Collections.synchronizedCollection();
+				Collections.synchronizedSet();
+				Collections.synchronizedSortedSet();
+				Collections.synchronizedSortedMap();
+
+其次 它们对于null的处理不同
+	HashMap 无论主键对象还是值对象 都可以添加null
+		只不过主键对象要求唯一 所以只能放一个null
+	Hashtable 无论主键还是值对象 都不可以存放null
+		  否则直接出现异常  直接空指针异常
+
+再次 它们底层实现有些许区别
+	HashMap 底层默认分为16个小组 可以指定分组
+		但是最终结果一定是2的n次方数
+		& (分组组数-1)
+	Hashtable 底层默认分为11个小组 可以随意指定分组
+		% (分组组数)
+
+最后 它们出现的版本不同
+	HashMap		since JDK1.2
+	Hashtable	since JDK1.0	[集合两大鼻祖之一]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
