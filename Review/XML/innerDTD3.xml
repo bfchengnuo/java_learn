@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE 学生信息[
+	<!ELEMENT 学生信息 (student*)>
+	<!ELEMENT student (name,age)>
+		<!--
+			<!ATTLIST 依附元素名 属性名 属性类型 默认值>
+			属性类型:
+				ID:全文唯一不能以数字开头
+				CDATA:表示可以任意字符串
+				(数据1|数据2|数据N):属性值只能从括号内任选其一
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			默认值:
+				#REQUIRED:表示默认值必须书写
+				#IMPLIED:爱写不写
+				具体数据:如果不书写默认值则默认使用此数据
+				#FIXED:表示此属性值固定为后面的默认值
+				存在浏览器差异性
+		-->
+		<!ATTLIST student id ID #REQUIRED>
+		<!ATTLIST student home CDATA #IMPLIED>
+		<!ATTLIST student salary (10k|20k|30k) "20k">
+		<!ATTLIST student job CDATA #FIXED "软件工程师">
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT age (#PCDATA)>
+]>
+
+<学生信息>
+	<student id="e001" home="jj" salary="10k"
+		job="软件工程师">
+		<name>penny</name>
+		<age>20</age>
+	</student>
+</学生信息>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	内部DTD:将DTD文件直接书写在xml文件中
+	DTD文件用来规范元素的结构和属性，可以使用哪些
+	标签，这些标签出现的频率，嵌套的标签等一系列约束
+	条件，违反了dtd的约束，xml无法被解析
+
+	<!DOCTYPE 根元素[
+		<!ELEMENT 根元素 (一级子元素)>
+	]>
+
+	*:表示此元素可以出现任意多次，也可以不出现
+	元素名1,元素名2:此处的逗号表示元素出现的顺序
+	必须按照前后显示，如果元素没有后面的标识符，则
+	有且只能出现一次
+	(元素1|元素2|元素N):此处得元素任选其一
+	?:此元素有0个或者1个
+	+:至少一个上不封顶
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	元素内部的值的类型:
+	(#PCDATA):元素内部为任意字符串
+	ANY:可以任意字符串也可以再是子元素
+	(#PCDATA|元素名)*:元素内部可以是任意字符串，也可以是
+	特定子元素，也可以两者同时存在
+	EMPTY:元素内部没有任何内容或者子元素
+-->
+<!DOCTYPE 学生信息[
+	<!ELEMENT 学生信息 (student*)>
+	<!ELEMENT student (name,age,(location|home),hobby*,
+	gf?,teacher+,job*,criminal)>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT age (#PCDATA)>
+	<!ELEMENT location (#PCDATA)>
+	<!ELEMENT home (#PCDATA)>
+	<!ELEMENT hobby ANY>
+	<!ELEMENT gf (#PCDATA)>
+	<!ELEMENT teacher (#PCDATA)>
+	<!ELEMENT job (#PCDATA|secondJob)*>
+	<!ELEMENT criminal EMPTY>
+	<!ELEMENT secondJob (#PCDATA)>
+]>
+
+<学生信息>
+	<student>
+		<name>Damon</name>
+		<age>30</age>
+		<home>US</home>
+		<hobby>敲代码</hobby>
+		<hobby>旅行</hobby>
+		<gf>Elena</gf>
+		<teacher>Aleric</teacher>
+		<job>
+			软件工程师
+			<secondJob>特工人员</secondJob>
+		</job>
+		<criminal></criminal>
+	</student>
+</学生信息>
+
+
+
+
+
+
+
+
+
+
+
