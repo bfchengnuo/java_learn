@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.bfchengnuo.po.Employee" table="employee" schema="hr">
+        <id name="empId">
+            <column name="empId" sql-type="int(11)"/>
+            <generator class="identity"/>
+        </id>
+        <property name="empName">
+            <column name="empName" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="empCode">
+            <column name="empCode" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(2)" length="2" not-null="true"/>
+        </property>
+        <property name="age">
+            <column name="age" sql-type="int(11)" not-null="true"/>
+        </property>
+        <many-to-one name="organizationByOrgaId" class="com.bfchengnuo.po.Organization" lazy="false">
+            <column name="orgaId" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

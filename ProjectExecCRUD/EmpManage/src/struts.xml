@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="empManage" extends="json-default">
+        <action name="getEmp" class="com.bfchengnuo.action.EmpAction" method="queryEmps">
+            <result type="json">
+                <param name="excludeProperties">emp</param>
+            </result>
+        </action>
+
+        <action name="getOrgan" class="com.bfchengnuo.action.EmpAction" method="getOrgan">
+            <result type="json">
+                <param name="excludeProperties">emp</param>
+            </result>
+        </action>
+
+        <action name="delEmp" class="com.bfchengnuo.action.EmpAction" method="delEmp">
+            <result type="json">
+                <param name="root">suc</param>
+            </result>
+        </action>
+    </package>
+
+    <package name="update" extends="struts-default">
+        <action name="addEmp" class="com.bfchengnuo.action.UpdateAction" method="addEmp">
+            <result type="redirect">page/employees.jsp</result>
+        </action>
+
+        <action name="updateEmp" class="com.bfchengnuo.action.UpdateAction" method="updateEmp">
+            <result type="redirect">page/employees.jsp</result>
+        </action>
+
+        <action name="toUpdateEmp" class="com.bfchengnuo.action.UpdateAction" method="toUpdateEmp">
+            <result>page/updateEmployee.jsp</result>
+        </action>
+    </package>
+
+</struts>
