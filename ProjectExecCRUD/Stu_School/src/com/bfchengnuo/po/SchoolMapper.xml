@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="stu">
+    <insert id="addSchool" parameterType="sc">
+        insert into school (name, loc)
+        values
+            (#{name}, #{loc});
+    </insert>
+
+    <delete id="delSchoolById" parameterType="int">
+        delete from school
+        where id = #{id}
+    </delete>
+
+    <select id="querySchoolById" parameterType="int" resultType="sc">
+        select * from school where id=#{id}
+    </select>
+
+    <select id="querySchoolAll" resultType="sc">
+        select * from school
+    </select>
+</mapper>

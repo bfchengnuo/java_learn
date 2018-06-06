@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--设置别名-->
+    <typeAliases>
+        <typeAlias type="com.bfchengnuo.po.Student" alias="stu"/>
+        <typeAlias type="com.bfchengnuo.po.School" alias="sc"/>
+    </typeAliases>
+
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${pwd}"/>
+            </dataSource>
+        </environment>
+        <environment id="oracle">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${o.driver}"/>
+                <property name="url" value="${o.url}"/>
+                <property name="username" value="${o.username}"/>
+                <property name="password" value="${o.pwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/bfchengnuo/po/StudentMapper.xml"/>
+        <mapper resource="com/bfchengnuo/po/SchoolMapper.xml"/>
+    </mappers>
+</configuration>

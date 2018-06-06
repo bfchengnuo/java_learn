@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="stu" extends="json-default">
+        <action name="*_stu" method="{1}" class="com.bfchengnuo.action.StuAction">
+            <result name="add_suc" type="redirect">addstu.jsp</result>
+            <result type="json" name="del_suc">
+                <param name="root">flag</param>
+            </result>
+            <result name="querySome_suc" type="json">
+                <param name="root">page</param>
+            </result>
+        </action>
+
+        <action name="querySchool" class="com.bfchengnuo.action.SchoolAction" method="querySchool">
+            <result type="json">
+                <param name="root">list</param>
+            </result>
+        </action>
+
+        <action name="addSchool" class="com.bfchengnuo.action.SchoolAction" method="addSchool">
+            <result type="redirect">addsc.jsp</result>
+        </action>
+    </package>
+</struts>

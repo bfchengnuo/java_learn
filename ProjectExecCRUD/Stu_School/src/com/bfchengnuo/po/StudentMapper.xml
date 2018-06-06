@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="stu">
+    <resultMap id="stu_map" type="stu">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="birth" column="birth"/>
+        <result property="email" column="email"/>
+        <result property="school.id" column="sid"/>
+        <result property="school.name" column="sname"/>
+        <result property="school.loc" column="loc"/>
+    </resultMap>
+
+    <insert id="addStu" parameterType="stu">
+        insert into student (name, age, birth, email, sid)
+        values
+            (#{name}, #{age}, #{birth}, #{email}, #{school.id});
+    </insert>
+
+    <delete id="delStuById" parameterType="int">
+        delete from student
+        where id = #{id}
+    </delete>
+
+    <update id="updateStu" parameterType="stu">
+        update student
+        set name = #{name}, age = #{age}, birth = #{birth}, email = #{email}, sid = #{school.id}
+        where id = #{id}
+    </update>
+
+    <select id="queryStuById" parameterType="int" resultMap="stu_map">
+        select
+            s.*,
+            sc.id   sid,
+            sc.name sname,
+            sc.l/.oc  loc
+        from student s
+            left join school sc on s.sid = sc.id
+        where s.id = #{id}
+    </select>
+
+    <select id="queryStuSome" parameterType="map" resultMap="stu_map">
+        select
+        s.*,
+        sc.id sid,
+        sc.name sname,
+        sc.loc loc
+        from student s
+        left join school sc on s.sid = sc.id
+        <where>
+            <if test="name != null">
+                and s.name like '%${name}%'
+            </if>
+            <if test="sid != null">
+                and s.sid = #{sid}
+            </if>
+        </where>
+        limit #{start},#{max}
+    </select>
+
+    <select id="countStu" resultType="int" parameterType="map">
+        select count(*) from student s
+        <where>
+            <if test="name != null">
+                and s.name like '%${name}%'
+            </if>
+            <if test="sid != null">
+                and s.sid = #{sid}
+            </if>
+        </where>
+    </select>
+</mapper>
