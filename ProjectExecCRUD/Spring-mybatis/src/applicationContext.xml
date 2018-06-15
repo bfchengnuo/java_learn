@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:component-scan base-package="com.etoak"/>
+	
+	<!-- 配置数据源，无事务 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql:///1803?useSSL=true&amp;characterEncoding=utf-8"/>
+		<property name="username" value="loli"/>
+		<property name="password" value="12358"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 别名后，要么只写类名，要么全小写 -->
+		<property name="typeAliasesPackage" value="com.etoak.bean"/>
+		
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:com/etoak/mapper/*.xml</value>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- 扫描接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 
+			使用 value 注入，而不是 sqlSessionFactory，因为 sqlSessionFactory 有 bug
+			通过 sqlSessionFactory 能够使用 getMapper() 来获取 dao 接口的动态代理类
+		 -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+		<property name="basePackage" value="com.etoak.mapper"/>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="tx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 标识事务唯一，配合注解的 val 在多事务管理器的场景下使用 -->
+		<!-- <qualifier value=""/> -->
+	</bean>
+
+	<!-- 默认使用JDK的接口代理，如果没有接口就不起作用 proxy-target-class=false -->
+	<tx:annotation-driven transaction-manager="tx" proxy-target-class="true" />
+	
+	<!-- 编程式事务 -->
+	<bean id="tt" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="tx" />
+	</bean>
+
+</beans>
