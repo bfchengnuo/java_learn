@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			div{
+				font-size:20px;
+			}
+			.demo-div ul li {
+				font-weight:bold;
+				font-size:20px;
+				margin-top:15px;
+				margin-bottom:5px;
+			}
+		</style>
+	</head>
+	
+	<body style="padding-left: 50px;">
+		<h1>取值（插值）</h1>
+		
+		<h2>1，取基本值</h2>
+		<div class="demo-div">
+			<ul>
+				<li>
+				整数：<font color="red">${intVar}</font><br/>
+				长整数：<font color="red">${longVar}</font><br/>
+				字符串：<font color="red">${stringVar}</font><br/>
+				双精度：<font color="red">${doubleVar}</font><br/>
+				布尔值：<font color="red">${booleanVar?string('yes','no')}</font><br/>
+				日期：<font color="red">${dateVar?string('yyyy-MM-dd HH:mm:ss')}</font><br/>
+				</li>
+				
+				<li>不存在的值 或者 为null的值</li>
+				<font color="red">${abc!0}</font>
+				
+				<li>对象</li>
+				<font color="red">${(userObj.name)!}</font><br/>
+				${(userObj.brief)!}
+				
+				<li>集合 List</li>
+				<#list myList as item>
+					<font color="red">${item!}</font><br/>
+				</#list>
+								
+				<li>集合 map</li>
+				<#list map?keys as key>
+					<font color="red">${key} : ${map[key]}</font><br/>
+				</#list>
+				
+			</ul>
+		</div>
+	</body>
+</html>
+

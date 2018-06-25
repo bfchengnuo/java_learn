@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.etoak.modules.user.mapper.UserMapper">
+	<sql id="user-columns">
+		id,username,password,nickname,email,tel,state,create_time
+	</sql>
+	
+	<insert id="add" parameterType="User">
+		insert into
+		et_user(<include refid="user-columns"/>)
+		values(#{id},#{username},#{password},#{nickname},#{email},#{tel},#{state},#{createTime})
+	</insert>
+</mapper>

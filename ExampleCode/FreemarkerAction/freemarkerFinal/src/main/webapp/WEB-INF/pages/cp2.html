@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			div{
+				font-size:20px;
+			}
+			.demo-div ul li {
+				font-weight:bold;
+				font-size:20px;
+				margin-top:15px;
+				margin-bottom:5px;
+			}
+		</style>
+	</head>
+	
+	<body style="padding-left: 50px;">
+		<h1>逻辑</h1>
+		
+		<h2>1，if else </h2>
+		<div class="demo-div">
+			<ul>
+				<li>
+					<#if booleanVar>
+					<font color="red">booleanVar = true</font>
+					</#if>
+				</li>
+				
+				<li>
+					<#assign intVal =12 />
+					<#if intVal == 5>
+					<font color="red"> intVal = 5</font>
+					<#elseif intVal == 10 >
+					<font color="red"> intVal = 10</font>
+					<#elseif intVal &gt; 10 && intVal &lt; 15>
+					<font color="red"> intVal 大于 10 ，并且 intVal 小于15</font>
+					<#else>
+					<font color="red"> intVal 是其他值</font>
+					</#if>
+				</li>
+			</ul>
+		</div>
+		
+		<h2>1，switch case </h2>
+		<div class="demo-div">
+			<ul>
+				<li>
+					<#assign intVal =13 />
+					<#switch intVal>
+						<#case 10>
+						<font color="red">10</font>
+						<#break>
+						
+						<#case 11>
+						<font color="red">11</font>
+						<#break>
+						
+						<#case 12>
+						<font color="red">12</font>
+						<#break>
+						
+						<#case 13>
+						<#case 14>
+						<font color="red">13 or 14</font>
+						<#break>
+						
+						<#default>
+						<font color="red">100</font>
+					</#switch>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	
+</html>
+

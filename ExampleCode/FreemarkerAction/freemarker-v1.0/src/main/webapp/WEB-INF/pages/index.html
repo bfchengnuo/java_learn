@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			table{
+				margin-top:10px;
+				width:100%;
+				border-collapse: collapse;
+				border: 1px solid #eee;
+				cellPadding:1px;
+			}
+			thead{
+				font-weight:bold;
+			}
+			tr td{
+				border: 1px solid #eee;
+				padding:2px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h2>${username!}</h2>
+		
+		<h2>展示列表</h2>
+		
+		<table>
+			<thead>
+				<tr>
+					<td>编号</td>
+					<td>名字</td>
+					<td>年龄</td>
+				</tr>
+			</thead>
+			<tbody>
+				<#list personList as item>
+				<#if item_index%2 == 0>
+				<tr style="background-color:#eee;">
+				<#else>
+				<tr>
+				</#if>
+					<td>${item_index!}</td>
+					<td>${item.name!}</td>
+					<td>${item.age!}</td>				
+				</tr>
+				</#list>
+			</tbody>
+		</table>
+		
+	</body>
+	
+</html>
+
