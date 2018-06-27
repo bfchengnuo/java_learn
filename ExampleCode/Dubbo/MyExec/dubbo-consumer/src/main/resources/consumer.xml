@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<dubbo:application name="dubbo-consumer"/>
+	
+	 <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+    <!-- 生成远程服务代理，可以和本地 bean 一样使用 Service -->
+    <!-- <dubbo:reference id="userService" interface="com.bfchengnuo.service.UserService" /> -->
+    
+    <context:component-scan base-package="com.bfchengnuo"/>
+    <dubbo:annotation package="com.bfchengnuo.controller" />
+</beans>
