@@ -1,0 +1,10 @@
+spring:
+   mvc:
+      view:
+         prefix: /
+         suffix: .jsp
+ds:
+   driver-class-name: com.mysql.jdbc.Driver
+   url: jdbc:mysql:///1803?useSSL=true&characterEncoding=UTF-8
+   username: loli
+   password: 12358
