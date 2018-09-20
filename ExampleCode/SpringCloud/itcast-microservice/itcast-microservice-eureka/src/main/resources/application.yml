@@ -1,0 +1,20 @@
+server:
+  port: ${port:6868} #服务端口
+
+spring: 
+  application:  
+    name: itcast-microservice-eureka #指定服务名
+
+eureka:
+  client:
+    registerWithEureka: false #是否将自己注册到Eureka服务中，本身就是所有无需注册
+    fetchRegistry: false #是否从Eureka中获取注册信息
+    #serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
+    #  defaultZone: http://itcast:itcast123@127.0.0.1:6868/eureka/
+      
+security: 
+  basic:  
+    enable: true #开启基于HTTP basic的认证
+  user: #配置用户的账号信息
+    name: itcast
+    password: itcast123
